@@ -1,0 +1,8 @@
+# ninja log v5
+30	700	7521718460573915	CMakeFiles/number.dir/src/number.cpp.obj	a7c16bcf2ed65c6c
+48	939	7521719118958872	CMakeFiles/CMakeProject1.dir/main.cpp.obj	6096e22f8f3d8282
+35	946	7521718460573915	number.dll	71077ca2d4a0c787
+939	1743	7521719125138118	CMakeProject1.exe	83af6e8cc14f364a
+59	1940	7521719834432703	build.ninja	a3f978fe02ac1991
+35	946	7521718460573915	number.lib	71077ca2d4a0c787
+171	1016	7521718463763447	CMakeFiles/CMakeProject1.dir/src/number.cpp.obj	ea4c4fb873ec1c96
