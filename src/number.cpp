@@ -8,7 +8,28 @@ Number::Number(const std::string& numstr) {
 	num = numstr;
 }
 
+bool IsNumberNegative(const Number& num);
+
 Number Number::operator+(const Number& other) const {
+
+	if (IsNumberNegative(num) && !IsNumberNegative(other)) {
+		std::string tmpnum = num;
+		tmpnum.erase(0, 1);
+		return Number(other - Number(tmpnum)).num;
+	}
+	if (!IsNumberNegative(num) && IsNumberNegative(other)) {
+		std::string tmpnum = other.num;
+		tmpnum.erase(0, 1);
+		return Number(Number(num) - tmpnum);
+	}
+	if (IsNumberNegative(num) && IsNumberNegative(other)) {
+		std::string tmpnum1 = num;
+		std::string tmpnum2 = other.num;
+		tmpnum1.erase(0, 1);
+		tmpnum2.erase(0, 1);
+		return Number('-'+(Number(tmpnum1) + Number(tmpnum2)).num);
+	}
+
 		std::string tmpstr = "";
 		int Ncount = 0;
 		int index = 0;
@@ -54,7 +75,35 @@ Number Number::operator+(const Number& other) const {
 //	return tmpstr;
 //}
 
+bool IsNumberNegative(const Number& num) {
+	if (num.num[0] == '-') {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 Number Number::operator-(const Number& other) const {
+	
+	if (IsNumberNegative(num) && !IsNumberNegative(other)) {
+		std::string tmpnum = num;
+		tmpnum.erase(0, 1);
+		return Number('-'+(Number(other + Number(tmpnum)).num));
+	}
+	if (!IsNumberNegative(num) && IsNumberNegative(other)) {
+		std::string tmpnum = other.num;
+		tmpnum.erase(0, 1);
+		return Number(Number(num) + Number(tmpnum));
+	}
+	if (IsNumberNegative(num) && IsNumberNegative(other)) {
+		std::string tmpnum1 = num;
+		tmpnum1.erase(0, 1);
+		std::string tmpnum2 = other.num;
+		tmpnum2.erase(0, 1);
+		return Number(Number(tmpnum2) - Number(tmpnum1));
+	}
+	
 	std::string tmpstr = "";
 	int Ncount = 0;
 	int index = 0;
@@ -95,7 +144,7 @@ Number Number::operator-(const Number& other) const {
 			tmpstr = tmpsubtraction + tmpstr;
 	}
 	for (int i = 0; i < tmpstr.size(); i++) {
-		if (tmpstr[i] == '0') {
+		if (tmpstr[i] == '0'&& tmpstr.size()!=1) {
 			tmpstr.erase(0, 1);
 			i--;
 		}
@@ -107,6 +156,7 @@ Number Number::operator-(const Number& other) const {
 	//	tmpstr = Numberversal(tmpstr);
 	//	tmpstr = char('-') + tmpstr;
 	//}
+
 	return Number(tmpstr);
 }
 
