@@ -8,5 +8,6 @@ public:
 	//大数的加法
 	Number operator+(const Number& other) const;
 	Number operator-(const Number& other) const;
+	Number operator*(const Number& other) const;
 	Number(const std::string& num);
 };

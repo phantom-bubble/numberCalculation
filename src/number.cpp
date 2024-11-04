@@ -160,3 +160,57 @@ Number Number::operator-(const Number& other) const {
 	return Number(tmpstr);
 }
 
+
+//Number Number::operator*(const Number& other) const {
+//	std::string tmpstr = other.num;
+//	Number outputCountstr = { "0" };
+//	Number tmpCountstr01 = Number(num);
+//	for (int i = 0; i < tmpstr.size(); i++) {
+//
+//		for (int j = 0; j < tmpstr[i] - '0'; j++) {
+//			outputCountstr = Number(outputCountstr) + tmpCountstr01;
+//		}
+//
+//		Number tmpCountstr02 = outputCountstr;
+//
+//		outputCountstr = Number(outputCountstr.num + "0");
+//	}
+//	outputCountstr.num.erase(outputCountstr.num.end() - 1);
+//	return  outputCountstr;
+//}
+
+
+static Number partialMultiply(const Number& other, const char& digit) {
+	Number result = other;
+	int int_digit = digit - '0';
+	for (auto & it : result.num) {
+		it = unsigned char((it - '0') * int_digit + '0');
+	}
+	int carry = 0;
+	for (auto it = result.num.rbegin(); it!= result.num.rend(); it++) {
+		if (unsigned char(*it + carry)  > '9') {
+			int one_num = (unsigned char(*it + carry) - '0');
+			carry = one_num / 10;
+			*it = one_num % 10 + '0';
+		}
+		else {
+			*it += carry;
+			carry = 0;
+		}
+	}
+	if (carry > 0) {
+		result.num = char('0' + carry) + result.num;
+	}
+	return result;
+}
+
+Number Number::operator*(const Number& other) const {
+	Number result = { "0" };
+	for (auto it : other.num) {
+		result = result + partialMultiply(num, it);
+		result.num += "0";
+	}
+	result.num.erase(result.num.end() - 1);
+	return result;
+}
+
