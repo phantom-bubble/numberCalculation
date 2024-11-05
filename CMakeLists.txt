@@ -11,6 +11,8 @@ endif()
 
 project ("CMakeProject1")
 
+set(CMAKE_CXX_FLAGS "-O3")
+
 #把文件parentsisMatch.cpp编译为动态链接库
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
