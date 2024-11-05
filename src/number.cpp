@@ -103,7 +103,16 @@ Number Number::operator-(const Number& other) const {
 		tmpnum2.erase(0, 1);
 		return Number(Number(tmpnum2) - Number(tmpnum1));
 	}
-	
+	if (num.size() > 1 &&num[0] == '0') {
+		std::string tmpnum1 = num;
+		tmpnum1.erase(0, 1);
+		return Number(tmpnum1) - other;
+	}
+	if (other.num.size() > 1 && other.num[0] == '0') {
+		std::string tmpnum2 = other.num;
+		tmpnum2.erase(0, 1);
+		return *this - Number(tmpnum2);
+	}
 	std::string tmpstr = "";
 	int Ncount = 0;
 	int index = 0;
@@ -212,5 +221,72 @@ Number Number::operator*(const Number& other) const {
 	}
 	result.num.erase(result.num.end() - 1);
 	return result;
+}
+
+//数的比较大小
+bool Number::operator<(const Number& other) const {
+	if (IsNumberNegative(num) && !IsNumberNegative(other)) {
+		return true;
+	}
+	if (!IsNumberNegative(num) && IsNumberNegative(other)) {
+		return false;
+	}
+	if (IsNumberNegative(num) && IsNumberNegative(other)) {
+		std::string tmpnum1 = num;
+		tmpnum1.erase(0, 1);
+		std::string tmpnum2 = other.num;
+		tmpnum2.erase(0, 1);
+		return Number(tmpnum2) < Number(tmpnum1);
+	}
+	if (num.size() < other.num.size()) {
+		return true;
+	}
+	if (num.size() > other.num.size()) {
+		return false;
+	}
+	for (int i = 0; i < num.size(); i++) {
+		if (num[i] < other.num[i]) {
+			return true;
+		}
+		if (num[i] > other.num[i]) {
+			return false;
+		}
+	}
+	return false;//相等
+}
+
+bool Number::operator>=(const Number& other) const {
+	return !((*this) < other);
+}
+
+//数的除法
+Number Number::operator/(const Number& other) const {
+	std::string tmpstr = other.num;
+	Number outputCountstr = { "" };
+	Number PartialResult = { "0" };
+	//	Number tmpCountstr02 = { "" };
+	Number tmpCountstr01 = { "" };//被除数用于计算的部分
+	for (int i = 0; i < num.size(); i++) {
+		tmpCountstr01.num = tmpCountstr01.num +num[i];
+		if (tmpCountstr01 - Number(tmpstr) < Number("0")) {
+			outputCountstr.num = outputCountstr.num + '0';
+			continue;
+		}
+		else {
+			int j = 0;
+			do {
+				tmpCountstr01 = tmpCountstr01 - Number(tmpstr);
+				++j;
+			} while (!IsNumberNegative(tmpCountstr01));
+			outputCountstr.num = outputCountstr.num + char('0' + j - 1);
+			tmpCountstr01 = tmpCountstr01 + Number(tmpstr);
+		}
+	}
+	while (outputCountstr.num.size() >= 2&& outputCountstr.num[0] == '0') {
+		outputCountstr.num.erase(0, 1);
+	}
+	/*if (outputCountstr.num.empty())
+		outputCountstr.num = "0";*/
+	return outputCountstr;
 }
 
