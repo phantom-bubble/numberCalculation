@@ -3,7 +3,7 @@
 #include <string>
 #include <algorithm>
 
-//´óÊıÀà
+//å¤§æ•°ç±»
 Number::Number(const std::string& numstr) {
 	num = numstr;
 }
@@ -71,7 +71,7 @@ Number Number::operator+(const Number& other) const {
 		else {
 			if (char(tmpnum + tmpother - '0' + Ncount) > '9') {
 				tmpaddtion = tmpnum + tmpother - '0' + Ncount - 10;
-				Ncount = 1;//Á¬Ğø½øÎ»
+				Ncount = 1;//è¿ç»­è¿›ä½
 			}
 			else {
 				tmpaddtion = tmpnum + tmpother - '0' + Ncount;
@@ -173,7 +173,7 @@ static Number partialMultiply(const Number& other, const char& digit) {
 	int carry = 0;
 	for (auto it = result.num.rbegin(); it != result.num.rend(); it++) {
 		if ((unsigned char)(*it + carry) > '9') {
-			int one_num = ((unsigned char)(*it + carry) - '0');
+			int one_num = (unsigned char)(*it + carry) - '0';
 			carry = one_num / 10;
 			*it = one_num % 10 + '0';
 		}
@@ -225,7 +225,7 @@ Number Number::operator*(const Number& other) const {
 	return result;
 }
 
-//ÊıµÄ±È½Ï´óĞ¡
+//æ•°çš„æ¯”è¾ƒå¤§å°
 bool Number::operator<(const Number& other) const {
 	if (IsNumberNegative(num) && !IsNumberNegative(other)) {
 		return true;
@@ -254,14 +254,14 @@ bool Number::operator<(const Number& other) const {
 			return false;
 		}
 	}
-	return false;//ÏàµÈ
+	return false;//ç›¸ç­‰
 }
 
 bool Number::operator>=(const Number& other) const {
 	return !((*this) < other);
 }
 
-//ÊıµÄ³ı·¨
+//æ•°çš„é™¤æ³•
 Number Number::operator/(const Number& other) const {
 	if (IsNumberNegative(num) && !IsNumberNegative(other)) {
 		std::string tmpnum = num;
@@ -309,7 +309,7 @@ Number Number::operator/(const Number& other) const {
 	}
 	std::string tmpstr = other.num;
 	Number outputCountstr = { "" };
-	Number tmpCountstr01 = { "" };//±»³ıÊıÓÃÓÚ¼ÆËãµÄ²¿·Ö
+	Number tmpCountstr01 = { "" };//è¢«é™¤æ•°ç”¨äºè®¡ç®—çš„éƒ¨åˆ†
 	for (int i = 0; i < num.size(); i++) {
 		tmpCountstr01.num = tmpCountstr01.num + num[i];
 		if (tmpCountstr01 - Number(tmpstr) < Number("0")) {
