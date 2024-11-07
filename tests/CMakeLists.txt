@@ -14,9 +14,9 @@ project ("my_test")
 # 启用测试
 enable_testing()
 
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SOURCES)
 macro(test_for file_name)
-  add_executable (${file_name} "${file_name}.cpp")
-  target_link_libraries(${file_name} number)
+  add_executable (${file_name} "${file_name}.cpp" ${SOURCES})
   target_include_directories(${file_name} PRIVATE
     ${PROJECT_SOURCE_DIR}/../include
   )
