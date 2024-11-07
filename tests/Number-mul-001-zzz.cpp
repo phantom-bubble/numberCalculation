@@ -1,6 +1,5 @@
 #include <number.h>
-
-#define ASSERT(var) if (!(var)) return -1
+#include "assert.h"
 
 int main() {
     ASSERT((Number{ "1" } * Number{ "1" }).num == "1");
