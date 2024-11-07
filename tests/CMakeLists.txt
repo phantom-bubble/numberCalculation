@@ -23,7 +23,7 @@ macro(test_for file_name)
   add_test(NAME ${file_name}.cpp ${file_name})
 endmacro()
 
-test_for(Number-add-001-zzz)
+test_for("Number-add-001-zzz")
 
 
 
