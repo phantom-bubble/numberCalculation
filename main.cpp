@@ -13,7 +13,7 @@ int main() {
     Number n3("0");
     for(int i = 0; i < 1000000; i++)
         n3 = n1 * n2;
-        std::cout << (std::chrono::steady_clock::now() - now) / 1000000000. << "s\n";
+        std::cout << (std::chrono::steady_clock::now() - now).count() / 1000000000. << "s\n";
     std::cout << n3.num << std::endl;
     Number n4("0");
     Number n5("50000000");
