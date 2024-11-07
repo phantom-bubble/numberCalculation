@@ -24,7 +24,7 @@ macro(test_for file_name)
 endmacro()
 
 test_for("Number-add-001-zzz")
-
+test_for("Number-sub-001-zzz")
 
 
 
