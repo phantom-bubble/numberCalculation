@@ -22,7 +22,7 @@ Rational::Rational(const std::string& number) {
 
 void Rational::simplify() {
 	Number num{ "2" };
-	while (num < this->numerator && num < this->denominator) {
+	while (num <= this->numerator && num <= this->denominator) {
 		while ((this->numerator % num).num == "0" && (this->denominator % num).num == "0") {
 			this->numerator = this->numerator / num;
 			this->denominator = this->denominator / num;
@@ -31,10 +31,34 @@ void Rational::simplify() {
 	}
 }
 
+Rational Rational::operator+(const Rational& other) const {
+	Rational result{ "0" };
+	result.numerator = this->numerator * other.denominator + this->denominator * other.numerator;
+	result.denominator = this->denominator * other.denominator;
+	result.simplify();
+	return result;
+}
+
+Rational Rational::operator-(const Rational& other) const {
+	Rational result{ "0" };
+	result.numerator = this->numerator * other.denominator - this->denominator * other.numerator;
+	result.denominator = this->denominator * other.denominator;
+	result.simplify();
+	return result;
+}
+
 Rational Rational::operator*(const Rational& other) const {
 	Rational result{ "0"};
 	result.numerator = this->numerator * other.numerator;
 	result.denominator = this->denominator * other.denominator;
+	result.simplify();
+	return result;
+}
+
+Rational Rational::operator/(const Rational& other) const {
+	Rational result{ "0" };
+	result.numerator = this->numerator * other.denominator;
+	result.denominator = this->denominator * other.numerator;
 	result.simplify();
 	return result;
 }
