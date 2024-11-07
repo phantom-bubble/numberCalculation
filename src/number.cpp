@@ -263,6 +263,15 @@ bool Number::operator<(const Number& other) const {
 	return false;//相等
 }
 
+//数字的相等
+bool Number::operator==(const Number& other) const {
+	return num==other.num;
+}
+
+bool Number::operator<=(const Number& other) const {
+	return *this < other || *this == other;
+}
+
 bool Number::operator>=(const Number& other) const {
 	return !((*this) < other);
 }
