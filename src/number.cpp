@@ -192,12 +192,18 @@ Number Number::operator*(const Number& other) const {
 	if (IsNumberNegative(num) && !IsNumberNegative(other)) {
 		std::string tmpnum = num;
 		tmpnum.erase(0, 1);
-		return '-' + (other * Number(tmpnum)).num;
+		std::string result = (other * Number(tmpnum)).num;
+		if (result == "0")
+			return result;
+		return '-' + result;
 	}
 	if (!IsNumberNegative(num) && IsNumberNegative(other)) {
 		std::string tmpnum = other.num;
 		tmpnum.erase(0, 1);
-		return '-' + (Number(num) * tmpnum).num;
+		std::string result = (Number(num) * tmpnum).num;
+		if (result == "0")
+			return result;
+		return '-' + result;
 	}
 	if (IsNumberNegative(num) && IsNumberNegative(other)) {
 		std::string tmpnum1 = num;
@@ -266,12 +272,18 @@ Number Number::operator/(const Number& other) const {
 	if (IsNumberNegative(num) && !IsNumberNegative(other)) {
 		std::string tmpnum = num;
 		tmpnum.erase(0, 1);
-		return '-' + (Number(tmpnum) / other).num;
+		std::string result = (Number(tmpnum) / other).num;
+		if (result == "0")
+			return result;
+		return '-' + result;
 	}
 	if (!IsNumberNegative(num) && IsNumberNegative(other)) {
 		std::string tmpnum = other.num;
 		tmpnum.erase(0, 1);
-		return '-' + (Number(num) / tmpnum).num;
+		std::string result = (Number(num) / tmpnum).num;
+		if (result == "0")
+			return result;
+		return '-' + result;
 	}
 	if (IsNumberNegative(num) && IsNumberNegative(other)) {
 		std::string tmpnum1 = num;
