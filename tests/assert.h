@@ -1,4 +1,4 @@
 #pragma once
 
 #include <iostream>
-#define ASSERT(var) if (!(var)) { std::cout << #var << "\n"; return -1; }
+#define ASSERT(expression, result) if ((expression) != (result)) { std::cout << expression << " != " << var << "\n"; return -1; }
