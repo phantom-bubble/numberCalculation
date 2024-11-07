@@ -20,15 +20,11 @@ macro(test_for file_name)
   target_include_directories(${file_name} PRIVATE
     ${PROJECT_SOURCE_DIR}/../include
   )
-  add_test(NAME ${file_name}.cpp ${file_name})
+  add_test(NAME ${file_name}.cpp COMMAND ${file_name})
 endmacro()
 
-add_executable (Number-add-001-zzz "Number-add-001-zzz.cpp")
-  target_link_libraries(Number-add-001-zzz number)
-  target_include_directories(Number-add-001-zzz PRIVATE
-    ${PROJECT_SOURCE_DIR}/../include
-  )
-  add_test(NAME Number-add-001-zzz.cpp Number-add-001-zzz)
+test_for("Number-add-001-zzz")
+
 
 
 
