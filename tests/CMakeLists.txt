@@ -12,9 +12,9 @@ endif()
 project ("my_test")
 
 # 将源代码添加到此项目的可执行文件。
-add_executable (Number-add-001-zzz.cpp "Number-add-001-zzz.cpp")
-target_link_libraries(Number-add-001-zzz.cpp number)
-target_include_directories(CMakeProject1 PRIVATE
+add_executable (Number-add-001-zzz "Number-add-001-zzz.cpp")
+target_link_libraries(Number-add-001-zzz number)
+target_include_directories(Number-add-001-zzz PRIVATE
   ${PROJECT_SOURCE_DIR}/../include
 )
 
