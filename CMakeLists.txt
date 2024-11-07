@@ -24,7 +24,7 @@ target_include_directories(number PRIVATE
 )
 
 # 将源代码添加到此项目的可执行文件。
-add_executable (CMakeProject1 "main.cpp" "src/number.cpp")
+add_executable (CMakeProject1 "main.cpp" "src/number.cpp" "src/rational.cpp")
 #target_link_libraries(CMakeProject1 number)
 target_include_directories(CMakeProject1 PRIVATE
   ${PROJECT_SOURCE_DIR}/include

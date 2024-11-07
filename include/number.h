@@ -12,5 +12,7 @@ public:
 	Number operator-(const Number& other) const;
 	Number operator*(const Number& other) const;
 	Number operator/(const Number& other) const;
+	Number operator%(const Number& other) const;
 	Number(const std::string& num);
+	Number& operator=(const Number& other);
 };

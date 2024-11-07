@@ -8,6 +8,11 @@ Number::Number(const std::string& numstr) {
 	num = numstr;
 }
 
+Number& Number::operator=(const Number& other) {
+	num = other.num;
+	return *this;
+}
+
 bool IsNumberNegative(const Number& num) {
 	if (num.num[0] == '-') {
 		return true;
@@ -163,12 +168,12 @@ static Number partialMultiply(const Number& other, const char& digit) {
 	Number result = other;
 	int int_digit = digit - '0';
 	for (auto& it : result.num) {
-		it = unsigned char((it - '0') * int_digit + '0');
+		it = (unsigned char)((it - '0') * int_digit + '0');
 	}
 	int carry = 0;
 	for (auto it = result.num.rbegin(); it != result.num.rend(); it++) {
-		if (unsigned char(*it + carry) > '9') {
-			int one_num = (unsigned char(*it + carry) - '0');
+		if ((unsigned char)(*it + carry) > '9') {
+			int one_num = ((unsigned char)(*it + carry) - '0');
 			carry = one_num / 10;
 			*it = one_num % 10 + '0';
 		}
@@ -330,3 +335,6 @@ Number Number::operator/(const Number& other) const {
 	return outputCountstr;
 }
 
+Number Number::operator%(const Number& other) const {
+	return *this - (*this / other * other);
+}
