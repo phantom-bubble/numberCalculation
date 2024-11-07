@@ -11,25 +11,13 @@ endif()
 
 project ("my_test")
 
-set(CMAKE_CXX_FLAGS "-O3")
-
 # 将源代码添加到此项目的可执行文件。
-#add_executable (CMakeProject1 "main.cpp" "src/number.cpp")
-#target_link_libraries(CMakeProject1 number)
-#target_include_directories(CMakeProject1 PRIVATE
-#  ${PROJECT_SOURCE_DIR}/include
-#)
-
-
-
-#add_subdirectory(tests)
+add_executable (Number-add-001-zzz.cpp "Number-add-001-zzz.cpp")
+target_link_libraries(Number-add-001-zzz.cpp number)
+target_include_directories(CMakeProject1 PRIVATE
+  ${PROJECT_SOURCE_DIR}/../include
+)
 
 # 启用测试
-#enable_testing()
-#add_test(NAME MainTest COMMAND CMakeProject1)
-
-
-
-#if (CMAKE_VERSION VERSION_GREATER 3.12)
-  #set_property(TARGET CMakeProject1 PROPERTY CXX_STANDARD 20)
-#endif()
+enable_testing()
+add_test(NAME Number-add-001-zzz.cpp COMMAND Number-add-001-zzz)
