@@ -20,6 +20,10 @@ Rational::Rational(const std::string& number) {
 	simplify();
 }
 
+std::string Rational::to_ratio_string() const {
+	return numerator.num + "/" + denominator.num;
+}
+
 void Rational::simplify() {
 	Number num{ "2" };
 	while (num <= this->numerator && num <= this->denominator) {
