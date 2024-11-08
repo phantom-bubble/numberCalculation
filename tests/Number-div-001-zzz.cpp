@@ -8,7 +8,7 @@ int main() {
         for (int j = -10000; j < 10000; ++j) {
             if(j == 0)
               continue;
-            if((i < 0 && j > 0) || i >= 0 && j < 0) {
+            if((i < 0 && j > 0) || i > 0 && j < 0) {
               ASSERT((Number{ std::to_string(i) } / Number{ std::to_string(j) }).num, '-' + std::to_string(abs(i) / abs(j)));
             } else {
               ASSERT((Number{ std::to_string(i) } / Number{ std::to_string(j) }).num, std::to_string(i / j));
