@@ -25,12 +25,14 @@ std::string Rational::to_ratio_string() const {
 }
 
 Number gcd(const Number& n1, const Number& n2) {
-	while (n2.num != "0") {
-		Number temp = n2;
-		n2 = n1 % n2;
-		n1 = temp;
+	Number a = n1;
+	Number b = n2;
+	while (b.num != "0") {
+		Number temp = b;
+		b = a % b;
+		a = temp;
 	}
-	return n1;
+	return a;
 }
 
 void Rational::simplify() {
