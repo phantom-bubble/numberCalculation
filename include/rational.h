@@ -4,6 +4,7 @@
 class Rational {
 public:
 	Rational(const std::string& number);
+	std::string to_ratio_string() const;
 	Rational operator+(const Rational& other) const;
 	Rational operator-(const Rational& other) const;
 	Rational operator*(const Rational& other) const;
