@@ -14,8 +14,8 @@ int main() {
     std::cout  << "Ehlo, word!" << std::endl;
     Rational r1("2");
     Rational r2 = r1 - Rational{"1"};
-    Rational r3 = r2 / Rational{"1"} - pow(r, 2) / Rational{"2"} + pow(r, 3) / Rational{"6"} - pow(r, 4) / Rational{"24"} + pow(r, 5) / Rational{"120"}
-        - pow(r, 6) / Rational{"720"} + pow(r, 7) / Rational{"5040"};
+    Rational r3 = r2 / Rational{"1"} - pow(r2, 2) / Rational{"2"} + pow(r2, 3) / Rational{"6"} - pow(r2, 4) / Rational{"24"} + pow(r2, 5) / Rational{"120"}
+        - pow(r2, 6) / Rational{"720"} + pow(r2, 7) / Rational{"5040"};
     std::cout << r3.to_ratio_string() << std::endl;
     return 0;
 }
