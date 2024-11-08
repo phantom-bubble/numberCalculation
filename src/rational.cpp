@@ -24,15 +24,30 @@ std::string Rational::to_ratio_string() const {
 	return numerator.num + "/" + denominator.num;
 }
 
-void Rational::simplify() {
-	Number num{ "2" };
-	while (num <= this->numerator && num <= this->denominator) {
-		while ((this->numerator % num).num == "0" && (this->denominator % num).num == "0") {
-			this->numerator = this->numerator / num;
-			this->denominator = this->denominator / num;
-		}
-		num = num + Number("1");
+Number gcd(const Number& n1, const Number& n2) {
+	while (n2.num != "0") {
+		Number temp = n2;
+		n2 = n1 % n2;
+		n1 = temp;
 	}
+	return n1;
+}
+
+void Rational::simplify() {
+	Number g = gcd(numerator, denominator);
+	while(g.num != "1") {
+		this->numerator = this->numerator / g;
+		this->denominator = this->denominator / g;
+		g = gcd(numerator, denominator);
+	}
+	// Number num{ "2" };
+	// while (num <= this->numerator && num <= this->denominator) {
+	// 	while ((this->numerator % num).num == "0" && (this->denominator % num).num == "0") {
+	// 		this->numerator = this->numerator / num;
+	// 		this->denominator = this->denominator / num;
+	// 	}
+	// 	num = num + Number("1");
+	// }
 }
 
 Rational Rational::operator+(const Rational& other) const {
