@@ -1,4 +1,4 @@
-#include <number.h>
+#include <rational.h>
 #include "assert.h"
 
 int main() {
